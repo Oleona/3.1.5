@@ -5,51 +5,52 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
-
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/admin")
 public class AdminRestController {
     private final UserService userService;
+    private final RoleService roleService;
 
-    public AdminRestController(UserService userService) {
+    public AdminRestController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
-    @GetMapping("/admin")
+    @GetMapping
     public ResponseEntity<List<User>> showAllUsers() {
         return new ResponseEntity<>(userService.listUsers(), HttpStatus.OK);
 
     }
 
-    @GetMapping("/admin/role")
+    @GetMapping("/role")
     public ResponseEntity<List<Role>> showAllRoles() {
-        var dd = userService.roles();
-        return new ResponseEntity<>(userService.roles(), HttpStatus.OK);
+        return new ResponseEntity<>(roleService.roles(), HttpStatus.OK);
     }
 
-    @GetMapping("/admin/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/admin")
+    @PostMapping
     public ResponseEntity<HttpStatus> addNewUser(@RequestBody User user) {
         userService.add(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PatchMapping("/admin")
+    @PatchMapping
     public ResponseEntity<HttpStatus> updateUser(@RequestBody User user) {
         userService.update(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) {
         userService.delete(id);
         return ResponseEntity.ok(HttpStatus.OK);

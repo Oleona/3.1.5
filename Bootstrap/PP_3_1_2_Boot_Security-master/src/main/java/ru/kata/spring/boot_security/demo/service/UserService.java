@@ -8,7 +8,7 @@ import ru.kata.spring.boot_security.demo.entity.User;
 
 import java.util.List;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
     void add(User user);
 
     List<User> listUsers();
@@ -17,14 +17,6 @@ public interface UserService extends UserDetailsService {
 
     void update(User user);//, Long id
 
-    public User getUserById(Long userid);
+    User getUserById(Long userid);
 
-    public User findByEmail(String email);
-
-    @Override
-    UserDetails loadUserByUsername(String email);
-
-    UserDetails userAlreadyExists(String email);
-
-    List<Role> roles();
 }

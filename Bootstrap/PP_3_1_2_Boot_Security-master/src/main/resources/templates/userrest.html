@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">>
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -16,10 +16,10 @@
     <nav class="navbar navbar-light bg-dark ">
         <div class="container-fluid">
             <a class="navbar-brand ">
-                <span class="text-white font-weight-bold" th:text="${user.getEmail()}"></span>
+              <span class="text-white font-weight-bold" id="userEmail" ></span>
                 <span class="text-white">  with roles: </span>
-                <span class="text-white " th:text="${user.getRolesAsString}"></span>
-                <span><a th:href="@{/login}" class="text-light bg-dark">Logout</a> </span>
+                <span class="text-white " id="userUserRole"></span>
+                <span><a class="nav-link text-right text-light bg-dark" href="/logout">Logout</a></span>
             </a>
         </div>
     </nav>

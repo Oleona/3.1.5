@@ -4,8 +4,8 @@ let result = ''
 const show = (listUsers) => {
     const container = document.getElementById("data")
     const users = Array.from(listUsers)
-users.forEach(user => {
-    result += `<tr>
+    users.forEach(user => {
+        result += `<tr>
         <td>${user.id}</td>
         <td>${user.name}</td>
         <td>${user.lastName}</td>
@@ -19,14 +19,11 @@ users.forEach(user => {
                 <a class="btnDelete btn btn-danger">Delete</a>
             </td>      
          </tr> `
-})
-container.innerHTML = result
-
+    })
+    container.innerHTML = result
 }
-
 
 fetch(URL, {headers: {'Content-type': 'application/json'},}
 )
     .then(response => response.json())
     .then(data => show(data))
-

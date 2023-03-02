@@ -1,7 +1,9 @@
-let resultShowUser=''
+let resultShowUser = ''
+
 const showUser = (user) => {
     const showUserContainer = document.getElementById("dataUser")
-
+    $('#userEmail').append(user.email);
+    $('#userUserRole').append(user.rolesAsString)
     resultShowUser += `<tr>
         <td>${user.id}</td>
         <td>${user.name}</td>
